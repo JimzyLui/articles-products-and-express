@@ -1,0 +1,119 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+}
+html,
+body {
+  height: 100%;
+}
+
+.wrapper {
+  min-height: 100%;
+  height: auto !important;
+  height: 100%;
+  margin: 0 auto -142px; /* the bottom margin is the negative value of the footer's height */
+}
+.footer,
+.push {
+  height: 142px; /* .push must be the same height as .footer */
+}
+.main-header,
+.navbar,
+.navbar > a {
+  background-color: black;
+  color: white !important;
+  padding: 5px;
+}
+.white {
+  color: white !important;
+}
+.white:hover {
+  color: white !important;
+}
+
+h1,
+h2,
+h3 {
+  color: blue;
+  text-align: center;
+}
+body {
+  background-color: lightblue;
+}
+.display {
+  display: flex;
+  flex-flow: column nowrap;
+  justify-content: center;
+  /* margin-left: auto; */
+  /* margin-right: auto; */
+}
+.control {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  margin-bottom: 5px;
+}
+.control > * {
+  padding-right: 5px;
+  padding-left: 5px;
+}
+.button {
+  justify-content: center;
+}
+label {
+  /* flex-wrap: nowrap !important; */
+  font-weight: 700;
+  /* flex: 0 0 max-content; */
+  /* flex: 0 0 min-content; */
+  /* flex: 0 0 fit-content; */
+  /* flex: 0 0 fill; */
+  flex: 1 0 10%;
+}
+ul {
+  display: flex;
+  flex-flow: column nowrap;
+  align-items: flex-start;
+  margin-left: 40%;
+}
+input {
+  flex: 1 0 10%;
+}
+.productEdit,
+.productNew {
+  display: flex;
+  flex-flow: column wrap;
+}
+.footer,
+.wrapper,
+.push {
+  background-color: gray;
+  line-height: 35px;
+  max-height: 35px;
+  height: 35px;
+  padding-top: 30px;
+  color: white !important;
+}
+.warning {
+  color: red;
+  text-align: center;
+}
+.active {
+  color: yellow;
+  font-weight: 700;
+}
+
+.menuItems > a {
+  /* display: flex;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-content: center; */
+  padding-left: 5px;
+  padding-right: 5px;
+}
+
+.center {
+  text-align: center;
+}
+#priceProduct::before {
+  content: "$ ";
+}
