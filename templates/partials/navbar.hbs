@@ -1,0 +1,16 @@
+<header class="main-header">
+  <nav class="main-header__nav">
+    <div class="menuItems">
+      <a class="navbar-brand white" href="./">Articles and Products</a>
+
+      {{!-- <ul class="main-header__item-list">
+      <li class="main-header__item {{#if activeProducts }}active{{/if}}"> --}}
+      <a class=" {{#if activeProducts }}active{{/if}}" href="/products">Products</a>
+      {{!-- </li>
+      <li class="main-header__item {{#if activeArticles }}active{{/if}}"> --}}
+      <a class="{{#if activeArticles }}active{{/if}}" href="/articles">Articles</a>
+      {{!-- </li>
+    </ul> --}}
+    </div>
+  </nav>
+</header>

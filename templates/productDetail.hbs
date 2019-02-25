@@ -1,0 +1,29 @@
+<div class='productDetail container display'>
+
+  <h3>{{ pageTitle }}</h3>
+
+  <div class='control'>
+    <label for="nameProduct">Product Name: </label>
+    <div>{{p.name}}</div>
+  </div>
+  <div class='control'>
+    <label for="priceProduct">Price: </label>
+    <div>${{p.price}}</div>
+  </div>
+  <div class='control'>
+    <label for="inventoryProduct">Inventory: </label>
+    <div>{{p.inventory}}</div>
+  </div>
+  <div class='control buttons'>
+    <form>
+      <span>
+        <button type='submit' formaction="/products/{{p.id}}/edit" formmethod="GET">Edit</button>
+      </span><span>
+        <button type='submit' formaction="/products/new" formmethod='GET'>Add</button>
+      </span><span>
+        <button type='submit' formaction="/products/DELETE/{{p.id}}" formmethod='POST'>Delete</button>
+      </span>
+    </form>
+  </div>
+</div>
+{{> footerProducts}}

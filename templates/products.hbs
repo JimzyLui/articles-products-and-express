@@ -1,0 +1,25 @@
+<div class='container  display'>
+  <h2>{{pageTitle}}</h2>
+  {{#if hasProducts }}
+  <div class="grid">
+    <ul>
+      {{#each products}}
+      <div class='control'>
+        <li>
+          <a href="/products/{{this.id}}">{{this.name}}</a> ${{this.price}}
+        </li>
+      </div>
+      {{/each}}
+    </ul>
+  </div>
+  {{else }}
+  <p class='warning'>No products found.</p>
+  {{/if }}
+  <form action='/products/new' method="GET">
+    <div class='control button'>
+      <button type='submit'>Add New
+        Product</button>
+    </div>
+  </form>
+</div>
+{{> footer}}

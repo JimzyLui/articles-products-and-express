@@ -1,0 +1,26 @@
+<div class='productNew container display'></div>
+<h3>{{ pageTitle }}</h3>
+
+<form action="/products/new" method="POST" id='addProduct'>
+  <div class='control'>
+    <label for="name">Product Name: </label>
+    <input type="text" id="name" name="name" required minlength="1" size="10">
+  </div>
+  <div class='control'>
+    <label for="price">Price: </label>
+    <input type="text" id="price" name="price" required minlength="1" size="10">
+  </div>
+  <div class='control'>
+    <label for="inventory">Inventory: </label>
+    <input type="text" id="inventory" name="inventory" required minlength="1" maxlength="8" size="10" value='0'>
+  </div>
+
+  <div class='control'>
+    <span>
+      <button class='' type='submit'>Save</button>
+    </span><span>
+      <button formaction='/products' formmethod='GET' formnovalidate type='cancel'>Cancel</button>
+    </span>
+  </div>
+</form>
+</div>

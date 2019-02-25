@@ -1,0 +1,29 @@
+<div class='productEdit container display'>
+  <h3>{{ pageTitle }}</h3>
+
+  <form action='/products/UPDATE/{{p.id}}' method="POST">
+    <div class='control'>
+      <label for="name">Product Name: </label>
+      <input type="text" id="name" name="name" required minlength="4" maxlength="8" size="10" value="{{p.name}}">
+    </div>
+    <div class='control'>
+      <label for="price">Price: </label>
+      <input type="decimal" id="price" name="price" required minlength="1" maxlength="8" size="10" value="{{p.price}}">
+    </div>
+    <div class='control'>
+      <label for="inventory">Inventory: </label>
+      <input type="text" id="inventory" name="inventory" required minlength="1" maxlength="8" size="10"
+        value="{{p.inventory}}">
+    </div>
+
+    <input type="hidden" value="{{p.id}}">
+    <div class='control buttons'>
+      <span>
+        <button id='updateProduct'>Save</button>
+      </span><span>
+        <button type='cancel' formaction="/products/{{p.id}}" formmethod="GET">Cancel</button>
+      </span>
+    </div>
+  </form>
+</div>
+{{> footerProducts}}
