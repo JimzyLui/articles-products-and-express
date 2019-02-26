@@ -1,0 +1,30 @@
+<div class='articleEdit container display'>
+  <h3>{{ pageTitle }}</h3>
+
+  <form action='/articles/UPDATE/{{p.id}}' method="POST">
+    <div class='article control'>
+      <label for="title">Article Title: </label>
+      <input type="text" id="title" name="title" required minlength="1" value="{{p.title}}">
+    </div>
+    <div class='article control'>
+      <label for="author">Author: </label>
+      <input type="text" id="author" name="author" required minlength="1" value="{{p.author}}">
+    </div>
+    <div class='article control'>
+      <label for="body">Body: </label>
+    </div>
+    <div class='control'>
+      <textarea name="body" rows='5' col='80' required>{{p.body}}</textarea>
+    </div>
+
+    <input type="hidden" value="{{p.id}}">
+    <div class='control buttons'>
+      <span>
+        <button id='updateArticle'>Save</button>
+      </span><span>
+        <button type='cancel' formaction="/articles/{{p.id}}" formmethod="GET">Cancel</button>
+      </span>
+    </div>
+  </form>
+</div>
+{{> footerArticles}}

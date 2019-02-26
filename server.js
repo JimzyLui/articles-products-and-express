@@ -44,6 +44,10 @@ app.set("views", path.join(__dirname, "/templates"));
 app.use("/products", productRoutes);
 app.use("/articles", articleRoutes);
 
+app.get("/index", (req, res) => {
+  res.render("index", { mainHeading: "Articles and Products" });
+});
+
 app.get("/", (req, res) => {
   res.render("index", { mainHeading: "Articles and Products" });
 });

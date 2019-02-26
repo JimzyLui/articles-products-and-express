@@ -1,10 +1,25 @@
-<h2>Articles</h2>
-<ul>
-  {{#each articles}}
-  <li><a href="/article/{{id}}">{{title}}</a></li>
-  {{/each}}
-</ul>
-<button id='newArticle'>Add New Article</button>
-
-
+<div class='container  display'>
+  <h2>{{pageTitle}}</h2>
+  {{#if hasArticles }}
+  <div class="gridArticles">
+    <ul>
+      {{#each articles}}
+      <div class='control'>
+        <li>
+          <a href="/articles/{{this.id}}">{{this.title}} </a><span class='authorFont'>By {{this.author}}</span>
+        </li>
+      </div>
+      {{/each}}
+    </ul>
+  </div>
+  {{else }}
+  <p class='warning'>No articles found.</p>
+  {{/if }}
+  <form action='/articles/new' method="GET">
+    <div class='control button'>
+      <button type='submit'>Add New
+        Article</button>
+    </div>
+  </form>
+</div>
 {{> footer}}

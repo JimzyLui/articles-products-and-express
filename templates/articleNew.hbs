@@ -1,0 +1,26 @@
+<div class='articleNew container display'></div>
+<h3>{{ pageTitle }}</h3>
+
+<form action="/articles/new" method="POST" id='addArticle'>
+  <div class='control'>
+    <label for="title">Article Title: </label>
+    <input type="text" id="title" name="title" required minlength="1">
+  </div>
+  <div class='control'>
+    <label for="author">Author: </label>
+    <input type="text" id="author" name="author" required minlength="1">
+  </div>
+  <div class='control'>
+    <label for="body">Content: </label>
+    <textarea name='body' required></textarea>
+  </div>
+
+  <div class='control'>
+    <span>
+      <button class='' type='submit'>Save</button>
+    </span><span>
+      <button formaction='/articles' formmethod='GET' formnovalidate type='cancel'>Cancel</button>
+    </span>
+  </div>
+</form>
+</div>
