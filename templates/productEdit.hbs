@@ -8,12 +8,11 @@
     </div>
     <div class='control'>
       <label for="price">Price: </label>
-      <input type="decimal" id="price" name="price" required minlength="1" maxlength="8" size="10" value="{{p.price}}">
+      <input type="decimal" id="price" name="price" required minlength="1" class='right' value="{{p.price}}">
     </div>
     <div class='control'>
       <label for="inventory">Inventory: </label>
-      <input type="text" id="inventory" name="inventory" required minlength="1" maxlength="8" size="10"
-        value="{{p.inventory}}">
+      <input type="text" id="inventory" name="inventory" required minlength="1" class='right' value="{{p.inventory}}">
     </div>
 
     <input type="hidden" value="{{p.id}}">

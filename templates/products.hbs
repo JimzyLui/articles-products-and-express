@@ -1,25 +1,39 @@
 <div class='container  display'>
   <h2>{{pageTitle}}</h2>
   {{#if hasProducts }}
-  <div class="grid">
-    <ul>
-      {{#each products}}
-      <div class='control'>
-        <li>
-          <a href="/products/{{this.id}}">{{this.name}}</a> ${{this.price}}
-        </li>
-      </div>
-      {{/each}}
-    </ul>
+  {{!-- <div class="gridProducts"> --}}
+  <table id='tableProducts' class='container'>
+    <tr class='center'>
+      <th>Product Name</th>
+      <th>Price</th>
+      <th>Qty</th>
+    </tr>
+    {{!-- <ul> --}}
+    {{#each products}}
+    <tr>
+      {{!-- <div class='control'> --}}
+      {{!-- <li> --}}
+      <td>
+        <a href="/products/{{this.id}}">{{this.name}}</a>
+      </td>
+      <td class='right'>$ {{this.price}}</td>
+      <td class='right'>{{this.inventory}}</td>
+
+      {{!-- </li> --}}
+      {{!-- </div> --}}
+    </tr>
+    {{/each}}
+    {{!-- </ul> --}}
+  </table>
+</div>
+{{else }}
+<p class='warning'>No products found.</p>
+{{/if }}
+<form action='/products/new' method="GET">
+  <div class='control button'>
+    <button type='submit'>Add New
+      Product</button>
   </div>
-  {{else }}
-  <p class='warning'>No products found.</p>
-  {{/if }}
-  <form action='/products/new' method="GET">
-    <div class='control button'>
-      <button type='submit'>Add New
-        Product</button>
-    </div>
-  </form>
+</form>
 </div>
 {{> footer}}

@@ -1,12 +1,12 @@
 <div class='container  display'>
   <h2>{{pageTitle}}</h2>
   {{#if hasArticles }}
-  <div class="grid">
+  <div class="gridArticles">
     <ul>
       {{#each articles}}
       <div class='control'>
         <li>
-          <a href="/articles/{{this.id}}">{{this.title}} </a>By {{this.author}}
+          <a href="/articles/{{this.id}}">{{this.title}} </a><span class='authorFont'>By {{this.author}}</span>
         </li>
       </div>
       {{/each}}

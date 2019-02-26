@@ -134,3 +134,51 @@ textarea {
   margin-top: 0px;
   margin-bottom: 20px;
 }
+
+.gridProducts {
+  display: grid;
+  grid-template-columns: 40% 10% 10%;
+}
+
+#tableProducts {
+  border: 2px solid black;
+  padding: 0px 5px;
+  width: 50%;
+  margin-bottom: 20px;
+}
+#tableProducts th {
+  background-color: white;
+  color: blue;
+  font-weight: 700;
+  border-bottom: 2px solid blue;
+}
+#tableProducts tbody td {
+  background-color: lightcyan;
+  padding-left: 15px;
+  padding-right: 15px;
+}
+.right {
+  text-align: right;
+}
+.left {
+  text-align: left;
+}
+
+.authorFont {
+  font-style: italic;
+  font-size: 10px;
+}
+.authorFont:hover {
+  font-size: 20px;
+}
+
+.productDetail {
+  width: 50%;
+}
+
+.productEdit {
+  width: 50%;
+}
+.productEdit > #price::before {
+  content: "$ ";
+}
