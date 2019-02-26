@@ -1,5 +1,29 @@
-<h3>{{title}}</h3>
-<p class='author'>By: {{author}}</p>
-<br>
-<p class='articleBody'>{{body}}</p>
+<div class='articleDetail container display'>
+
+  <h3>{{ pageTitle }}</h3>
+
+  <div class='control'>
+    <label for="titleArticle">Article Title: </label>
+    <div>{{p.title}}</div>
+  </div>
+  <div class='control'>
+    <label for="authorArticle">Author: </label>
+    <div>By {{p.author}}</div>
+  </div>
+  <div class='control'>
+    <label for="bodyArticle">Body: </label>
+    <div>{{p.body}}</div>
+  </div>
+  <div class='control buttons'>
+    <form>
+      <span>
+        <button type='submit' formaction="/articles/{{p.id}}/edit" formmethod="GET">Edit</button>
+      </span><span>
+        <button type='submit' formaction="/articles/new" formmethod='GET'>Add</button>
+      </span><span>
+        <button type='submit' formaction="/articles/DELETE/{{p.id}}" formmethod='POST'>Delete</button>
+      </span>
+    </form>
+  </div>
+</div>
 {{> footerArticles}}

@@ -4,7 +4,7 @@ const router = express.Router();
 const DS_Products = require("./../db/DS_Products");
 
 router.use("/", (req, res, next) => {
-  console.log("req.body: ", req.body);
+  // console.log("req.body: ", req.body);
   next();
 });
 
