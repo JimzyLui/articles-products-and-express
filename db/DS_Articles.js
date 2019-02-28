@@ -116,7 +116,12 @@ class DS_Articles {
   }
   createArticle(title, author, body) {
     title = this.toTitleCase(title);
-    this.storage.push({ id: this.idNum, title, body, author });
+    this.storage.push({
+      id: this.idNum,
+      title: title,
+      body: body,
+      author: author
+    });
     this.idNum++;
   }
   deleteArticleById(id) {
