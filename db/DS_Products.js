@@ -1,3 +1,4 @@
+"use strict";
 class DS_Products {
   constructor() {
     this.storage = [];
@@ -15,6 +16,52 @@ class DS_Products {
     }
     // names must be equal
     return 0;
+  }
+  // convertToCurrency(num) {
+  //   const curr = num.replace(/(\d)(?=(\d\d\d)+(?!\d))/g, "$1,");
+  //   return curr;
+  // }
+  formatToCurrency(numStr) {
+    return parseFloat(numStr).toFixed(2);
+  }
+
+  formatToCurrencyx(numStr) {
+    numStr += "";
+    console.log("numStr: ", numStr);
+    numStr = numStr.trim("0");
+    const arrMoney = numStr.split(".");
+    console.log("arrMoney: ", arrMoney);
+    let dollars = arrMoney[0];
+    let cents = "0.00";
+    switch (arrMoney.length) {
+      case 0:
+        return 0.0;
+        break;
+      case 1:
+        dollars = Number.parseFloat(dollars + ".00").toFixed(2);
+        console.log("dollars: ", dollars);
+        return dollars;
+        break;
+      case 2:
+        cents = "." + arrMoney[1];
+        cents = Number.parseFloat(cents)
+          .toFixed(2)
+          .toString();
+        console.log("cents: ", cents);
+
+        break;
+      default:
+        return 0.0;
+        break;
+    }
+    var rgx = /(\d+)(\d{3})/;
+    while (rgx.test(dollars)) {
+      dollars = dollars.replace(rgx, "$1" + "," + "$2");
+    }
+    console.log("dollars: ", dollars);
+    console.log("cents: ", cents);
+    dollars += cents;
+    return Number.parseFloat(dollars).toFixed(2);
   }
 
   initMockProducts() {
@@ -57,7 +104,14 @@ class DS_Products {
     return result;
   }
   createProduct(name, price, inventory) {
-    this.storage.push({ id: this.idNum, name, price, inventory });
+    const currency = this.formatToCurrency(price).toString();
+    console.log("currency: ", currency);
+    this.storage.push({
+      id: this.idNum,
+      name: name,
+      price: currency,
+      inventory: inventory
+    });
     this.idNum++;
     console.log("createProduct: id=", this.idNum);
     return this.idNum;
