@@ -1,20 +1,8 @@
 "use strict";
-require('dotenv').config({path: './'});
 
-const knex = require('./database');
+// require('dotenv').config({path: './.env'});
 
-knex.select().from('products')
-.then((products) => {
-  console.log(products);
-  process.exit();
-});
-/*
-knex.select().from('articles')
-.then((articles) => {
-  console.log(articles);
-  process.exit();
-});
-*/
+
 
 var path = require("path");
 const express = require("express");

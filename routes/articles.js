@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const DS_Articles = require("../db/DS_Articles");
+const DS_Articles = require("../classes/DS_Articles");
 
 router.use("/", (req, res, next) => {
   console.log("req.body: ", req.body);

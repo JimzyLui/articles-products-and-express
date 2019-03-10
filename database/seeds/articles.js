@@ -1,3 +1,4 @@
+
 const faker = require("faker");
 
 const createFakeArticle = ()=>({
@@ -5,23 +6,25 @@ const createFakeArticle = ()=>({
   body: faker.lorem.paragraphs(),
   author: faker.name.findName()
 });
-/*
+
+
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
   return knex('articles').del()
     .then(function () {
       const arrFakeArticles = [];
-      const iDesiredFakeArticles = 1000;
+      const iDesiredFakeArticles = 10000;
       for(let i=0; i<iDesiredFakeArticles; i++){
         arrFakeArticles.push(createFakeArticle());
       }
-      knex("articles")
+      console.log('createFakeArticle(',iDesiredFakeArticles,'): ',arrFakeArticles.length, ' records created.');
+      return knex("articles")
       .insert(arrFakeArticles)
     }); 
 };
-*/
 
 
+/*
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
   return knex('articles').del()
@@ -35,5 +38,5 @@ exports.seed = function(knex, Promise) {
       ]);
     });
 };
-
+*/
 

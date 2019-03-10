@@ -1,9 +1,13 @@
 "use strict";
+
+const knex = require('./../database/index');
+
 class DS_Products {
   constructor() {
     this.storage = [];
     this.idNum = 1;
-    this.initMockProducts();
+    this.products = [];
+    // this.initMockProducts();
   }
   sortName(a, b) {
     const nameA = a.name.toUpperCase(); // ignore upper and lowercase
@@ -63,7 +67,7 @@ class DS_Products {
     dollars += cents;
     return Number.parseFloat(dollars).toFixed(2);
   }
-
+  /*
   initMockProducts() {
     this.storage.push({
       id: this.idNum,
@@ -87,8 +91,17 @@ class DS_Products {
     });
     this.idNum++;
   }
+  */
   getAllProducts() {
-    return this.storage.slice().sort(this.sortName);
+    //return this.storage.slice().sort(this.sortName);
+    console.log('getAllProducts called.');
+    knex.select().from('products')
+      .then((products) => {
+        console.log(products.length, 'products loaded.');
+        // return products.slice().sort(this.sortName);
+        return products;
+        // process.exit();
+      })
   }
   getProductById(id) {
     let result;

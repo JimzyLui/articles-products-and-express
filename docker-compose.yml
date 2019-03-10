@@ -4,11 +4,15 @@ services:
     image: postgres:10.0-alpine
     env_file: .env
     volumes:
+      - ./customPostgresql.conf:/etc/postgresql.conf
       - pg-data-volume:/var/lib/postgresql/data
     ports:
       - '${POSTGRES_HOST_PORT}:${POSTGRES_CONTAINER_PORT}'
     networks:
       - my-app-network
+    container_name: jimzy_container
+    # env PGOPTIONS="-c geqo=off -c statement_timeout=5min" psql
+
 volumes:
   pg-data-volume:
 networks:

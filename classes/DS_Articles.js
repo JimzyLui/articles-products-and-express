@@ -1,4 +1,5 @@
 // const fx = require("../functions");
+const knex = require('./../database');
 
 class DS_Articles {
   constructor() {

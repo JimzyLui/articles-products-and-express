@@ -147,7 +147,7 @@ textarea {
 #tableProducts {
   border: 2px solid black;
   padding: 0px 5px;
-  width: 50%;
+  width: 70%;
   margin-bottom: 20px;
 }
 #tableProducts th {
@@ -156,10 +156,13 @@ textarea {
   font-weight: 700;
   border-bottom: 2px solid blue;
 }
+/* #tableProducts tbody tr{
+  display: inline-block;
+} */
 #tableProducts tbody td {
   background-color: lightcyan;
-  padding-left: 15px;
-  padding-right: 15px;
+  padding-left: 10px;
+  padding-right: 10px;
 }
 .right {
   text-align: right;

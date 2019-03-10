@@ -4,23 +4,23 @@
   {{!-- <div class="gridProducts"> --}}
   <table id='tableProducts' class='container table table-sm table-striped table-hover >
     <thead>
-      <tr class=' center'>
-    <th>Product Name</th>
-    <th>Price</th>
-    <th>Qty</th>
-    </tr>
+      <tr class=' center '>
+        <th>Product Name</th>
+        <th>Price</th>
+        <th>Qty</th>
+      </tr>
     </thead>
     {{!-- <ul> --}}
     <tbody>
       {{#each products}}
-      <tr>
+      <tr >
         {{!-- <div class='control'> --}}
         {{!-- <li> --}}
-        <td>
+        <td nowrap>
           <a href="/products/{{this.id}}">{{this.name}}</a>
         </td>
-        <td class='right'>$ {{this.price}}</td>
-        <td class='right'>{{this.inventory}}</td>
+        <td class='right' >$ {{this.price}}</td>
+        <td class='right' >{{this.inventory}}</td>
 
         {{!-- </li> --}}
         {{!-- </div> --}}
