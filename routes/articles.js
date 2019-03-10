@@ -4,7 +4,7 @@ const router = express.Router();
 const DS_Articles = require("../db/DS_Articles");
 
 router.use("/", (req, res, next) => {
-  console.log("req.body: ", req.body);
+  // console.log("req.body: ", req.body);
   next();
 });
 
