@@ -2,14 +2,31 @@
 
 // require('dotenv').config({path: './.env'});
 
-
-
 var path = require("path");
 const express = require("express");
 const expressHBS = require("express-handlebars");
 const bodyParser = require("body-parser"); // middleware
 
+var session = require('express-session');
+// var cookieParser = require('cookie-parser');
+var flash = require('connect-flash');
 const app = express();
+const cookie_secret = 'asdfadfs';
+// These 3 lines are for middleware passing of msgs
+// app.use(cookieParser('secretString'));
+// app.use(session({cookie: { maxAge: 60000 }}));
+app.use(session({
+  secret: cookie_secret,
+  resave: true,
+  saveUninitialized: true
+}));
+app.use(flash());
+// app.use(function(req, res, next){
+//   res.locals.success_messages = req.flash('success');
+//   res.locals.error_messages = req.flash('fail');
+//   next();
+// });
+
 app.use(bodyParser.urlencoded({ extended: true })); // parse forms
 app.use(express.static(path.join(__dirname, "")));
 app.use(express.static(__dirname + "/node_modules/bootstrap/dist"));

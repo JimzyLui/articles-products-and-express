@@ -1,5 +1,9 @@
 <div class='container  display'>
   <h2>{{pageTitle}}</h2>
+    {{#if msgSuccess }}
+      <p class='success'>{{msgSuccess}}</p>
+    {{/if }}
+
   {{#if hasArticles }}
   <div class="gridArticles">
     <ul>

@@ -1,10 +1,11 @@
 const express = require("express");
 const router = express.Router();
 
-const DS_Articles = require("../classes/DS_Articles");
+// const DS_Articles = require("../classes/DS_Articles");
+const Articles = require("../classes/Articles");
 
 router.use("/", (req, res, next) => {
-  console.log("req.body: ", req.body);
+  // console.log("req.body: ", req.body);
   next();
 });
 
@@ -25,10 +26,13 @@ router.post("/new", (req, res) => {
   console.log("p: ", p);
   console.log("p.title: ", p.title);
   if (p.title) {
-    const id = DS_Articles.createArticle(p.title, p.author, p.body);
-    res.redirect("/articles");
-    // const articles = DS_Articles.getAllArticles();
-    // res.render("articles", { articles, activeArticles: true });
+    Articles.createArticle(p)
+    .then((id)=>{
+      const msg = `New Article ${p.title} added.`;
+      console.log(msg);
+      req.flash('success', msg); 
+      res.redirect("/articles");
+    });
   } else {
     res.status(204).send("<h1>No content!</h1>");
   }
@@ -36,24 +40,30 @@ router.post("/new", (req, res) => {
 
 router.get("/:id/edit", (req, res) => {
   const articleId = Number(req.params.id);
-  const article = DS_Articles.getArticleById(articleId);
-  console.log("article edit: rendering...");
-  res.render("articleEdit", {
-    pageTitle: "Edit Article",
-    p: article,
-    activeArticles: true
+  Articles.getArticleById(articleId)
+  .then((article)=>{
+    console.log("article edit: rendering...");
+    article = article.pop();
+    res.render("articleEdit", {
+      pageTitle: "Edit Article",
+      p: article,
+      activeArticles: true
+    });
   });
 });
 
 router.get("/:id", (req, res) => {
   const articleId = Number(req.params.id);
   if (articleId) {
-    const article = DS_Articles.getArticleById(articleId);
-    // console.log("article: (get: article/:id) ", article);
-    res.render("articleDetail", {
-      p: article,
-      activeArticles: true,
-      pageTitle: article.title.toUpperCase()
+    Articles.getArticleById(articleId)
+    .then((article)=>{
+      // console.log("article: (get: article/:id) ", article);
+      article = article.pop();
+      res.render("articleDetail", {
+        p: article,
+        activeArticles: true,
+        pageTitle: article.title.toUpperCase()
+      });
     });
   } else {
     res.render("articleNew", {});
@@ -70,55 +80,84 @@ router.post("/:id", (req, res, next) => {
 router.post("/UPDATE/:id", (req, res) => {
   console.log("put!!!");
   const articleId = Number(req.params.id);
-  DS_Articles.deleteArticleById(articleId);
   const p = req.body;
-  // console.log("p: ", p);
-  const id = DS_Articles.createArticle(p.title, p.author, p.body);
-  console.log("article updated: ", id);
-  res.redirect("/articles");
-  // res.render("articleEdit", article);
+  p['id']=articleId;
+  // const p = req.params;
+  console.log('/update/: ',p);
+  
+  Articles.updateArticle(p)
+    .then((bSuccess)=>{
+      console.log('bSuccess : ',bSuccess);
+      if(bSuccess){
+        console.log("article updated: ", articleId);
+        const msg = `Article #${articleId} "${p.title}" updated.`;
+        console.log(msg);
+        req.flash('success', msg); 
+        res.redirect("/articles");
+      }else{
+        console.log('Update failed.');
+      }
+    });
 });
 
 router.put("/:id", (req, res) => {
   console.log("put!!!");
   const articleId = Number(req.params.id);
-  DS_Articles.deleteArticleById(articleId);
   const p = req.body;
-  // console.log("p: ", p);
-  const id = DS_Articles.createArticle(p.title, p.author, p.body);
-  console.log("article updated: ", id);
-  res.redirect("/articles");
-  // res.render("articleEdit", article);
+
+  Articles.updateArticle(p)
+  .then(()=>{
+    console.log("article updated: ", articleId);
+    res.redirect("/articles");
+  });
 });
 
 router.post("/DELETE/:id", (req, res) => {
-  console.log("delete called");
+  // console.log("delete called");
   const articleId = Number(req.params.id);
-  DS_Articles.deleteArticleById(articleId);
+  Articles.deleteArticleById(articleId)
+    .then((bSuccess)=>{
+      // console.log('bSuccess : ',bSuccess);
+      if(bSuccess){
+        const msg = `article# ${articleId} deleted!`;
+        console.log(msg);
+        // req.session.msg = msg;
+        req.flash('success', msg);  
+        // console.log('aaaa: ',req.flash('success').pop());
 
-  console.log("article deleted: ", articleId);
-  res.redirect("/articles");
-  // const articles = DS_Articles.getAllArticles();
-  // res.render("articles", { articles, activeArticles: true });
+        res.redirect(`/articles`);
+      }else{
+        console.log('Delete failed.');
+      }
+    });
 });
+
+
+
+
+
 router.delete("/:id", (req, res) => {
   console.log("delete called");
   const articleId = Number(req.params.id);
-  DS_Articles.deleteArticleById(articleId);
-
-  console.log("article deleted: ", articleId);
-  res.redirect("/articles");
-  // const articles = DS_Articles.getAllArticles();
-  // res.render("articles", { articles, activeArticles: true });
+  Articles.deleteArticleById(articleId)
+    .then((articleId)=>{
+      console.log("article deleted: ", articleId);
+      res.redirect("/articles");
+  });
 });
 
-router.get("/", (req, res) => {
-  const articles = DS_Articles.getAllArticles();
-  res.render("articles", {
-    articles,
-    pageTitle: "Articles",
-    hasArticles: articles.length > 0,
-    activeArticles: true
+router.get("/",(req, res) => {
+  // console.log('xxx: ',req.flash('success').pop());
+  Articles.getAllArticles()
+  .then((articles)=>{
+    res.render("articles", {
+      articles,
+      pageTitle: "Articles",
+      hasArticles: articles.length > 0,
+      activeArticles: true,
+      msgSuccess: req.flash('success')
+    });
+    // delete res.session.msg;
   });
 });
 

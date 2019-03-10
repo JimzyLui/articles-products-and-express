@@ -101,8 +101,12 @@ input {
   padding-top: 30px;
   color: white !important;
 }
-.warning {
+.warning,.fail {
   color: red;
+  text-align: center;
+}
+.success {
+  color: green;
   text-align: center;
 }
 .active {
