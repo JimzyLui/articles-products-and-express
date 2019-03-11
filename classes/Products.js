@@ -12,7 +12,6 @@ class Products {
 
 
   getAllProducts() {
-    console.log('getAllProducts called.');
     return knex.select()
       .from('products')
       .then((products) => {
@@ -76,4 +75,4 @@ class Products {
   }
 }
 
-module.exports = new DS_Products();
+module.exports = new Products();

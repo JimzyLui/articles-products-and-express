@@ -114,6 +114,9 @@ input {
   color: yellow;
   font-weight: 700;
 }
+.blue {
+  color: blue;
+}
 .inline {
   display: inline-block;
 }

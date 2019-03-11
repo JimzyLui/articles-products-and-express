@@ -61,6 +61,10 @@ class Articles {
       .map(x => {
         x.title = this.toTitleCase(x.title);
         return x;
+      })
+      .then((articles) => {
+        console.log(articles.length, 'articles loaded.');
+        return articles;
       });
   }
 
@@ -109,12 +113,7 @@ class Articles {
       .where({id: id})
       .del() 
       .then(()=>{
-        // console.log('deleted!')
         return true})   
-      // .then((updatedRows) => {
-      //   console.log('updatedRows: ',updatedRows);
-      //   return updatedRows===1;
-      // })
       .catch((err) => {
         console.error('Failed to delete', err);
         return Promise.reject(err);

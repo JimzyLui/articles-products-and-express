@@ -1,5 +1,10 @@
 <div class='container  display'>
   <h2>{{pageTitle}}</h2>
+    <p class='center blue'>{{ recordsFound }} products found</p>
+    {{#if msgSuccess }}
+      <p class='success'>{{msgSuccess}}</p>
+    {{/if }}
+
   {{#if hasProducts }}
   {{!-- <div class="gridProducts"> --}}
   <table id='tableProducts' class='container table table-sm table-striped table-hover >

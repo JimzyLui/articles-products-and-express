@@ -119,7 +119,6 @@ router.post("/DELETE/:id", (req, res) => {
   const productId = Number(req.params.id);
   Products.deleteProductById(productId)
   .then((bSuccess)=>{
-    // console.log('bSuccess : ',bSuccess);
     if(bSuccess){
       const msg = `product# ${productId} deleted!`;
       console.log(msg);
@@ -141,8 +140,6 @@ router.delete("/:id", (req, res) => {
 
   console.log("product deleted: ", productId);
   res.redirect("/products");
-  // const products = DS_Products.getAllProducts();
-  // res.render("products", { products, activeProducts: true });
 });
 
 router.delete("/:id", (req, res) => {

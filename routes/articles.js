@@ -1,23 +1,18 @@
 const express = require("express");
 const router = express.Router();
 
-// const DS_Articles = require("../classes/DS_Articles");
-const Articles = require("../classes/Articles");
+const Articles = require("./../classes/Articles");
 
 router.use("/", (req, res, next) => {
-  // console.log("req.body: ", req.body);
   next();
 });
 
 router.get("/new", (req, res) => {
   console.log("launch new article screen...");
-  // const p = { title: "", author: "", body: "" };
   res.render("articleNew", {
     activeArticles: true,
     pageTitle: "Add New Article"
   });
-
-  // res.render("articleEdit", article);
 });
 
 router.post("/new", (req, res) => {
@@ -82,7 +77,6 @@ router.post("/UPDATE/:id", (req, res) => {
   const articleId = Number(req.params.id);
   const p = req.body;
   p['id']=articleId;
-  // const p = req.params;
   console.log('/update/: ',p);
   
   Articles.updateArticle(p)
@@ -134,10 +128,6 @@ router.post("/DELETE/:id", (req, res) => {
     });
 });
 
-
-
-
-
 router.delete("/:id", (req, res) => {
   console.log("delete called");
   const articleId = Number(req.params.id);
@@ -169,7 +159,6 @@ router.get("/SEARCH/:val",(req, res) => {
 
 
 router.get("/",(req, res) => {
-  // console.log('xxx: ',req.flash('success').pop());
   Articles.getAllArticles()
   .then((articles)=>{
     res.render("articles", {
@@ -182,7 +171,6 @@ router.get("/",(req, res) => {
       msgSuccess: req.flash('success'),
       msgFail: req.flash('fail')
     });
-    // delete res.session.msg;
   });
 });
 
