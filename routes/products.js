@@ -56,7 +56,10 @@ router.get("/:id/edit", (req, res) => {
       res.render("productEdit", {
         pageTitle: "Edit Product",
         p: product,
-        activeProducts: true
+        activeProducts: true,
+        active: true,
+        msgSuccess: req.flash('success'),
+        msgFail: req.flash('fail')
       });
     })
   }  

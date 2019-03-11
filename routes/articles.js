@@ -89,13 +89,14 @@ router.post("/UPDATE/:id", (req, res) => {
     .then((bSuccess)=>{
       console.log('bSuccess : ',bSuccess);
       if(bSuccess){
-        console.log("article updated: ", articleId);
         const msg = `Article #${articleId} "${p.title}" updated.`;
         console.log(msg);
         req.flash('success', msg); 
         res.redirect("/articles");
       }else{
-        console.log('Update failed.');
+        const msg = `Error: article# ${articleId} was not updated!`;
+        console.log(msg);
+        req.flash('fail', msg);  
       }
     });
 });
@@ -107,7 +108,9 @@ router.put("/:id", (req, res) => {
 
   Articles.updateArticle(p)
   .then(()=>{
-    console.log("article updated: ", articleId);
+    const msg = `Article #${articleId} "${p.title}" updated.`;
+    console.log(msg);
+    req.flash('success', msg);  
     res.redirect("/articles");
   });
 });
@@ -121,13 +124,12 @@ router.post("/DELETE/:id", (req, res) => {
       if(bSuccess){
         const msg = `article# ${articleId} deleted!`;
         console.log(msg);
-        // req.session.msg = msg;
         req.flash('success', msg);  
-        // console.log('aaaa: ',req.flash('success').pop());
-
         res.redirect(`/articles`);
       }else{
-        console.log('Delete failed.');
+        const msg = `Error: article# ${articleId} was not deleted!`;
+        console.log(msg);
+        req.flash('fail', msg);  
       }
     });
 });
@@ -155,7 +157,9 @@ router.get("/",(req, res) => {
       pageTitle: "Articles",
       hasArticles: articles.length > 0,
       activeArticles: true,
-      msgSuccess: req.flash('success')
+      active: true,
+      msgSuccess: req.flash('success'),
+      msgFail: req.flash('fail')
     });
     // delete res.session.msg;
   });

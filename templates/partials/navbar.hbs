@@ -1,16 +1,29 @@
 <header class="main-header">
   <nav class="main-header__nav">
     <div class="menuItems">
-      <a class="navbar-brand  special" href="/index">Articles and Products</a>
-
-      {{!-- <ul class="main-header__item-list">
-      <li class="main-header__item {{#if activeProducts }}active{{/if}}"> --}}
-      <a class="special0 {{#if activeProducts }}active{{/if}}" href="/products">Products</a>
-      {{!-- </li>
-      <li class="main-header__item {{#if activeArticles }}active{{/if}}"> --}}
-      <a class="special0 {{#if activeArticles }}active{{/if}}" href="/articles">Articles</a>
-      {{!-- </li>
-    </ul> --}}
+      <span class="nav-item inline">
+        <a 
+          class="navbar-brand  special inline" 
+          href="/index">Articles and Products</a>
+        <a 
+          class="special0 {{#if activeProducts }}active{{/if}} inline" 
+          href="/products">Products</a>
+        <a 
+          class="special0 {{#if activeArticles }}active{{/if}} inline" 
+          href="/articles">Articles</a>
+      </span>
+      {{#if active }}
+      <span class="nav-item inline">
+        <form class="inline special my-2 my-lg-0" right>
+          <input 
+            class=" mr-sm-2" type="text" 
+            placeholder="Search{{#if activeArticles }} Articles{{/if}}{{#if activeProducts }} Products{{/if}}" 
+            aria-label="Search">
+          {{!-- <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button> --}}
+          <button class="" type="submit">Search</button>
+        </form>
+      </span>
+      {{/if}}
     </div>
   </nav>
 </header>
