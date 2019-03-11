@@ -118,7 +118,8 @@ router.get("/", (req, res) => {
     articles,
     pageTitle: "Articles",
     hasArticles: articles.length > 0,
-    activeArticles: true
+    activeArticles: true,
+    active: true
   });
 });
 
