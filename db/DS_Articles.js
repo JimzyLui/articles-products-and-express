@@ -105,7 +105,7 @@ class DS_Articles {
   }
   getArticleById(id) {
     let result;
-    console.log("id", id);
+    // console.log("id", id);
     this.storage.forEach(article => {
       if (article.id === id) {
         result = article;

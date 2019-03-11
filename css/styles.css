@@ -22,7 +22,8 @@ th {
 }
 .main-header,
 .navbar,
-.navbar > a {
+.navbar > a,
+.navbar > span {
   background-color: black;
   color: white !important;
   padding: 5px;
@@ -109,7 +110,14 @@ input {
   color: yellow;
   font-weight: 700;
 }
-
+.inline {
+  display: inline-block;
+}
+.menuItems {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+}
 .menuItems > a {
   /* display: flex;
   flex-flow: row nowrap;
