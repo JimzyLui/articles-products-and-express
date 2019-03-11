@@ -2,7 +2,7 @@
 const faker = require("faker");
 
 const createFakeArticle = ()=>({
-  title: faker.lorem.slug(5),
+  title: faker.lorem.words(),
   body: faker.lorem.paragraphs(),
   author: faker.name.findName()
 });
@@ -13,7 +13,7 @@ exports.seed = function(knex, Promise) {
   return knex('articles').del()
     .then(function () {
       const arrFakeArticles = [];
-      const iDesiredFakeArticles = 10000;
+      const iDesiredFakeArticles = 50;
       for(let i=0; i<iDesiredFakeArticles; i++){
         arrFakeArticles.push(createFakeArticle());
       }

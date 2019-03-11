@@ -148,6 +148,26 @@ router.delete("/:id", (req, res) => {
   });
 });
 
+router.get("/SEARCH/:val",(req, res) => {
+  const strSearch = req.params.search;
+  Articles.getArticlesBySearch(strSearch)
+  .then((articles)=>{
+    res.render("articles", {
+      articles,
+      pageTitle: "Articles",
+      hasArticles: articles.length > 0,
+      activeArticles: true,
+      active: true,
+      mode: 'search',
+      strSearch: strSearch,
+      recordsFound: articles.length,
+      msgSuccess: req.flash('success'),
+      msgFail: req.flash('fail')
+    });
+  });
+});
+
+
 router.get("/",(req, res) => {
   // console.log('xxx: ',req.flash('success').pop());
   Articles.getAllArticles()
@@ -158,6 +178,7 @@ router.get("/",(req, res) => {
       hasArticles: articles.length > 0,
       activeArticles: true,
       active: true,
+      recordsFound: articles.length,
       msgSuccess: req.flash('success'),
       msgFail: req.flash('fail')
     });

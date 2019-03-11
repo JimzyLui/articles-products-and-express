@@ -13,7 +13,7 @@ exports.seed = function(knex, Promise) {
   return knex('products').del()
     .then(function () {
       const arrFakeProducts = [];
-      const iDesiredFakeProducts = 10000;
+      const iDesiredFakeProducts = 50;
       for(let i=0; i<iDesiredFakeProducts; i++){
         arrFakeProducts.push(createFakeProduct());
       };

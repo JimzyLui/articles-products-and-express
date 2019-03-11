@@ -14,7 +14,7 @@
       </span>
       {{#if active }}
       <span class="nav-item inline">
-        <form class="inline special my-2 my-lg-0" right>
+        <form class="inline special my-2 my-lg-0" method="GET" action='/{{#if activeArticles }}articles{{/if}}{{#if activeProducts }}products{{/if}}/SEARCH'>
           <input 
             class=" mr-sm-2" type="text" 
             placeholder="Search{{#if activeArticles }} Articles{{/if}}{{#if activeProducts }} Products{{/if}}" 
