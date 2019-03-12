@@ -7,7 +7,7 @@ module.exports = Joi.object().keys({
 });*/
 
 const productSchema = (function() {
-  const nameSchema = Joi.string().alphanum().required;
+  const nameSchema = Joi.string().alphanum().required();
   const priceSchema = Joi.number().min(0.00);
   const inventorySchema = Joi.number().integer().min(0);
 

@@ -1,16 +1,43 @@
 "use strict";
 
 // require('dotenv').config({path: './.env'});
-
-var path = require("path");
+const moment = require('moment');
+const path = require("path");
 const express = require("express");
 const expressHBS = require("express-handlebars");
 const bodyParser = require("body-parser"); // middleware
 
-var session = require('express-session');
+const session = require('express-session');
 // var cookieParser = require('cookie-parser');
-var flash = require('connect-flash');
+const flash = require('connect-flash');
+const fs = require('fs'); // file system
+const morgan = require('morgan');  // for logging
+const rfs = require('rotating-file-stream');
+
 const app = express();
+const dirYYYY = moment().format('YYYY');
+const dirMM = moment().format('MM');
+const logDirectory = path.join(__dirname, 'logs/',dirYYYY,'/',dirMM);
+// ensure log directory exists
+fs.existsSync(logDirectory) || fs.mkdirSync(logDirectory,{ recursive: true });
+const logFileName = moment().format('YYYYMMDD')+'_access.log'; 
+// create a rotating write stream
+const accessLogStream = rfs(logFileName, {
+  interval: '1d', // rotate daily
+  path: logDirectory
+});
+// log only 4xx and 5xx responses to console
+app.use(morgan('dev', {
+  skip: function (req, res) { return res.statusCode < 400 }
+}));
+ // setup the logger
+app.use(morgan('combined', { stream: accessLogStream }))
+
+// log all requests to access.log
+// app.use(morgan('common', {
+//   stream: fs.createWriteStream(accessLogStream)
+// }));
+
 const cookie_secret = 'asdfadfs';
 // These 3 lines are for middleware passing of msgs
 // app.use(cookieParser('secretString'));

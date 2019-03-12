@@ -244,8 +244,8 @@ select:focus {
   box-shadow: 0 0 0 3px -moz-mac-focusring;
   color: #222;
   outline: none;
-  background-color: paleturquoise;
-  font-size: 14px;
+  /* background-color: paleturquoise; */
+  /* font-size: 14px; */
   font-weight: 500;
 }
 select option {

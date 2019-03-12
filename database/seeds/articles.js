@@ -10,7 +10,7 @@ const createFakeArticle = ()=>({
 
 exports.seed = function(knex, Promise) {
   // Deletes ALL existing entries
-  return knex('articles').del()
+  return knex('articles').truncate()
     .then(function () {
       const arrFakeArticles = [];
       const iDesiredFakeArticles = 50;
