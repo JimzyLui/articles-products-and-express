@@ -23,9 +23,11 @@
     "express": "^4.16.4",
     "express-handlebars": "^3.0.2",
     "express-session": "^1.15.6",
+    "joi": "^14.3.1",
     "jquery": "^3.3.1",
     "knex": "^0.16.3",
-    "pg": "^7.8.2"
+    "pg": "^7.8.2",
+    "popper": "^1.0.1"
   },
   "devDependencies": {
     "faker": "^4.1.0",

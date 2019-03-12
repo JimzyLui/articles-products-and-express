@@ -2,6 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 const Products = require("./../classes/Products");
+const productSchema = require('./../database/schemaProducts.js');
 
 router.use("/", (req, res, next) => {
   next();
@@ -17,6 +18,10 @@ router.get("/new", (req, res) => {
 
 router.post("/new", (req, res) => {
   console.log("Posting to /new...");
+  updateProductSchema.validate(req.body, {abortEarly: false})
+    .then(validatedChanges =>{
+
+    })
   const p = req.body;
   console.log("p: ", p);
   console.log("p.name: ", p.name);
