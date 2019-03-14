@@ -1,9 +1,7 @@
 // Update with your config settings.
 require('dotenv').config();
-
+// console.log(process.env);
 // require('dotenv').config({path: '.'});
-
-
 
 module.exports = {
   client: 'pg',

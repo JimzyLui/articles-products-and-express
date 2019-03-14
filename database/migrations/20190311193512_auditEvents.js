@@ -1,11 +1,11 @@
-const tableName = 'articles';
+const tableName = 'auditevents';
 
 exports.up = function(knex, Promise) {
   return knex.schema.createTable(tableName, (table) => {
     table.increments('id').primary();
-    table.string('title',150).notNullable();
-    table.text('body');
-    table.string('author',100);
+    table.string('userId',25).notNullable();
+    table.enum('module',['Articles','Products']).notNullable();
+    table.timestamp('created_at').defaultTo(knex.fn.now());
   }).then((table)=>
     console.log(`-->Table '${tableName}' created.`)
   );

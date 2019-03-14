@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 
-const Articles = require("./../classes/Articles");
+const Article = require("../classes/Article");
 
 router.use("/", (req, res, next) => {
   next();
@@ -21,7 +21,7 @@ router.post("/new", (req, res) => {
   console.log("p: ", p);
   console.log("p.title: ", p.title);
   if (p.title) {
-    Articles.createArticle(p)
+    Article.createArticle(p)
     .then((id)=>{
       const msg = `New Article ${p.title} added.`;
       console.log(msg);
@@ -32,40 +32,6 @@ router.post("/new", (req, res) => {
     res.status(204).send("<h1>No content!</h1>");
   }
 });
-
-router.get("/:id/edit", (req, res) => {
-  const articleId = Number(req.params.id);
-  Articles.getArticleById(articleId)
-  .then((article)=>{
-    console.log("article edit: rendering...");
-    article = article.pop();
-    res.render("articleEdit", {
-      pageTitle: "Edit Article",
-      p: article,
-      activeArticles: true
-    });
-  });
-});
-
-router.get("/:id", (req, res) => {
-  const articleId = Number(req.params.id);
-  if (articleId) {
-    Articles.getArticleById(articleId)
-    .then((article)=>{
-      // console.log("article: (get: article/:id) ", article);
-      article = article.pop();
-      res.render("articleDetail", {
-        p: article,
-        activeArticles: true,
-        pageTitle: article.title.toUpperCase()
-      });
-    });
-  } else {
-    res.render("articleNew", {});
-    res.send("No such id exists.");
-  }
-});
-
 router.post("/:id", (req, res, next) => {
   console.log("post -> put");
   redirect("/articles/:id");
@@ -79,7 +45,7 @@ router.post("/UPDATE/:id", (req, res) => {
   p['id']=articleId;
   console.log('/update/: ',p);
   
-  Articles.updateArticle(p)
+  Article.updateArticle(p)
     .then((bSuccess)=>{
       console.log('bSuccess : ',bSuccess);
       if(bSuccess){
@@ -100,7 +66,7 @@ router.put("/:id", (req, res) => {
   const articleId = Number(req.params.id);
   const p = req.body;
 
-  Articles.updateArticle(p)
+  Article.updateArticle(p)
   .then(()=>{
     const msg = `Article #${articleId} "${p.title}" updated.`;
     console.log(msg);
@@ -112,7 +78,7 @@ router.put("/:id", (req, res) => {
 router.post("/DELETE/:id", (req, res) => {
   // console.log("delete called");
   const articleId = Number(req.params.id);
-  Articles.deleteArticleById(articleId)
+  Article.deleteArticleById(articleId)
     .then((bSuccess)=>{
       // console.log('bSuccess : ',bSuccess);
       if(bSuccess){
@@ -131,16 +97,16 @@ router.post("/DELETE/:id", (req, res) => {
 router.delete("/:id", (req, res) => {
   console.log("delete called");
   const articleId = Number(req.params.id);
-  Articles.deleteArticleById(articleId)
+  Article.deleteArticleById(articleId)
     .then((articleId)=>{
       console.log("article deleted: ", articleId);
       res.redirect("/articles");
   });
 });
 
-router.get("/SEARCH/:val",(req, res) => {
-  const strSearch = req.params.search;
-  Articles.getArticlesBySearch(strSearch)
+router.get("/SEARCH/",(req, res) => {
+  const strSearch = req.query.search;
+  Article.getArticlesBySearch(strSearch)
   .then((articles)=>{
     res.render("articles", {
       articles,
@@ -158,8 +124,43 @@ router.get("/SEARCH/:val",(req, res) => {
 });
 
 
+router.get("/:id/edit", (req, res) => {
+  const articleId = Number(req.params.id);
+  Article.getArticleById(articleId)
+  .then((article)=>{
+    console.log("article edit: rendering...");
+    article = article.pop();
+    res.render("articleEdit", {
+      pageTitle: "Edit Article",
+      p: article,
+      activeArticles: true
+    });
+  });
+});
+
+router.get("/:id", (req, res) => {
+  const articleId = Number(req.params.id);
+  if (articleId) {
+    Article.getArticleById(articleId)
+    .then((article)=>{
+      // console.log("article: (get: article/:id) ", article);
+      article = article.pop();
+      res.render("articleDetail", {
+        p: article,
+        activeArticles: true,
+        pageTitle: article.title.toUpperCase()
+      });
+    });
+  } else {
+    res.render("articleNew", {});
+    res.send("No such id exists.");
+  }
+});
+
+
+
 router.get("/",(req, res) => {
-  Articles.getAllArticles()
+  Article.getAllArticles()
   .then((articles)=>{
     res.render("articles", {
       articles,

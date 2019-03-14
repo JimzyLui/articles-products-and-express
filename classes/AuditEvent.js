@@ -2,13 +2,20 @@
 
 const knex = require('../database');
 
-class Products {
+class Product {
+  /*
+  constructor(name, price, inventory) {
+    const obj = {
+      name: name,
+      price: price,
+      inventory: inventory
+    };
+    return this.createProduct(obj);
+  }*/
   constructor() {
   }
 
-  formatToCurrency(numStr) {
-    return parseFloat(numStr).toFixed(2);
-  }
+ 
 
 
   getAllProducts() {
@@ -19,10 +26,18 @@ class Products {
         return products;
       });
   }
+  
   getProductById(id) {
     return knex.select()
       .from('products')
       .where({id: id});
+  }
+
+  getProductsBySearch(strSearch) {
+    const qrySearch = '%'+strSearch+'%';
+    return knex.select()
+      .from('products')
+      .where('name','ilike',qrySearch);
   }
 
   // createProduct(name, price, inventory) {
@@ -75,4 +90,4 @@ class Products {
   }
 }
 
-module.exports = new Products();
+module.exports = new Product();

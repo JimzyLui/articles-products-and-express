@@ -8,7 +8,9 @@ module.exports = Joi.object().keys({
 
 const productSchema = (function() {
   const nameSchema = Joi.string().alphanum().required();
-  const priceSchema = Joi.number().min(0.00);
+  // const priceSchema = Joi.number().positive().greater(1).precision(2);
+  // const priceSchema = Joi.number().decimal().positive().greater(1).precision(2);
+  const priceSchema = Joi.string();
   const inventorySchema = Joi.number().integer().min(0);
 
   const createProductSchema = Joi.object().keys({
@@ -23,13 +25,15 @@ const productSchema = (function() {
     inventory: inventorySchema
   });
 
+  // return {
+  //   createProductSchema,
+  //   updateProductSchema
+  // }
   return {
-    createProductSchema,
-    updateProductSchema
+    createProductSchema
   }
-
 })();
 
 module.exports = {
-  productSchema: productSchema
+  productSchema
 };

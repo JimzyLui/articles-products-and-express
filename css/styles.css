@@ -308,3 +308,11 @@ h3 {
   color: white !important;
   font: 1em Georgia, serif;
 }
+.column-count2 {
+  column-count: 2;
+  column-gap: 30px;
+}
+.column-count3 {
+  column-count: 3;
+  column-gap: 30px;
+}

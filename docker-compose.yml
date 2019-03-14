@@ -12,7 +12,6 @@ services:
       - my-app-network
     container_name: jimzy_container
     # env PGOPTIONS="-c geqo=off -c statement_timeout=5min" psql
-
 volumes:
   pg-data-volume:
 networks:

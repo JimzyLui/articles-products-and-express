@@ -1,11 +1,21 @@
 // const fx = require("../functions");
 const knex = require('../database');
 
-class Articles {
+class Article {
+  /*
+  constructor(title, author, body) {
+    const obj = {
+      title: title,
+      author: author,
+      body: body
+    };
+    return this.createArticle(obj);
+  }*/
   constructor() {
   }
 
   toTitleCase(str) {
+    if(!str) return;
     var i, j, str, lowers, uppers;
     str = str.replace(/([^\W_]+[^\s-]*) */g, function(txt) {
       return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase();
@@ -74,6 +84,16 @@ class Articles {
       .where({id: id});
   }
 
+  getArticlesBySearch(strSearch) {
+    const qrySearch = '%'+strSearch+'%';
+    return knex.select()
+      .from('articles')
+      .where('title','ilike',qrySearch)
+      .orWhere('author','ilike',qrySearch)
+      .orderBy('title', 'asc')
+      .orderBy('author', 'asc');
+  }
+
   createArticle(p) {
     p.title = this.toTitleCase(p.title);
     return knex('articles')
@@ -121,4 +141,4 @@ class Articles {
   }
 }
 
-module.exports = new Articles();
+module.exports = new Article();

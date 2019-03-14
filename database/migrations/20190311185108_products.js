@@ -11,5 +11,9 @@ exports.up = function(knex, Promise) {
 };
 
 exports.down = function(knex, Promise) {
-  
+  return 
+  knex.schema.table(tableName, function(t) {
+    t.dropColumn('created_at');
+    t.dropColumn('modified_at');
+});
 };

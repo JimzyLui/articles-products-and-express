@@ -14,13 +14,13 @@
       </span>
       {{#if active }}
       <span class="nav-item inline">
-        <form class="inline special my-2 my-lg-0" method="GET" action='/{{#if activeArticles }}articles{{/if}}{{#if activeProducts }}products{{/if}}/SEARCH'>
+        <form class="inline special my-2 my-lg-0" method="GET" action='/{{#if activeArticles }}articles{{/if}}{{#if activeProducts }}products{{/if}}/SEARCH/'>
           <input 
             class=" mr-sm-2" type="text" 
             placeholder="Search{{#if activeArticles }} Articles{{/if}}{{#if activeProducts }} Products{{/if}}" 
-            aria-label="Search">
+            aria-label="Search" name='search' value='{{ strSearch }}'>
           {{!-- <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button> --}}
-          <button class="" type="submit">Search</button>
+          <button class="" type="search">Search</button>
         </form>
       </span>
       {{/if}}

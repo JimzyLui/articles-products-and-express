@@ -3,6 +3,7 @@
 // require('dotenv').config({path: './.env'});
 const moment = require('moment');
 const path = require("path");
+// const request = require('supertest');
 const express = require("express");
 const expressHBS = require("express-handlebars");
 const bodyParser = require("body-parser"); // middleware
@@ -58,8 +59,8 @@ app.use(bodyParser.urlencoded({ extended: true })); // parse forms
 app.use(express.static(path.join(__dirname, "")));
 app.use(express.static(__dirname + "/node_modules/bootstrap/dist"));
 
-const productRoutes = require("./routes/products");
-const articleRoutes = require("./routes/articles");
+const productRouter = require("./routes/products");
+const articleRouter = require("./routes/articles");
 
 const PORT = process.env.PORT || 8080;
 
@@ -89,8 +90,8 @@ app.set("view engine", "hbs"); // to point the view engine to the hbs engine
 // to point the views location to a different location
 app.set("views", path.join(__dirname, "/templates"));
 
-app.use("/products", productRoutes);
-app.use("/articles", articleRoutes);
+app.use("/products", productRouter);
+app.use("/articles", articleRouter);
 
 app.get("/index", (req, res) => {
   res.render("index", { mainHeading: "Articles and Products" });
